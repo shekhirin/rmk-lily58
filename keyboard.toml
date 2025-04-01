@@ -1,0 +1,87 @@
+[keyboard]
+name = "rmk-lily58"
+product_name = "rmk-lily58"
+vendor_id = 0x4c4b
+product_id = 0x4643
+manufacturer = "rmk"
+chip = "nrf52840"
+
+[layout]
+# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
+# row2col = true
+rows = 5
+cols = 12
+layers = 3
+keymap = [
+    # LBASE layer
+    [
+        ["Escape", "Kc1", "Kc2", "Kc3", "Kc4", "Kc5", "Kc6", "Kc7", "Kc8", "Kc9", "Kc0", "Backspace"],
+        ["Tab", "Q", "W", "E", "R", "T",                                            "Y", "U", "I", "O", "P", "Backslash"],
+        ["LCtrl", "MT(A, LCtrl)", "MT(S,LAlt)", "MT(D,LGui)", "MT(F, LShift)",      "G",    "H", "MT(J,RShift)", "MT(K,RGui)", "MT(L, RAlt)", "MT(Semicolon, RCtrl)", "Quote"],
+        ["LShift", "Z", "X", "C", "V", "B",                                         "N", "M", "Comma", "Dot", "Slash", "MT(Grave, RShift)"],
+        ["__", "MO(4)", "LGui", "MO(1)", "LT(3, Space)", "Kc1",                       "__", "Enter", "MO(2)", "LeftBracket", "RightBracket", "__"]
+    ],
+    # LLOWER layer (Layer 1)
+    [
+        ["_", "_", "_", "_", "_", "__", "__", "_", "_", "_", "_", "_"],
+        ["__", "WM(Kc1, LShift)", "WM(Kc2, LShift)", "WM(Kc3, LShift)", "WM(Kc4, LShift)", "WM(Kc5, LShift)", "WM(Kc6, LShift)", "WM(Kc7, LShift)", "WM(Kc8, LShift)", "WM(Kc9, LShift)", "WM(Kc0, LShift)", "_"],
+        ["_", "_", "_", "_", "_", "_",             "Backspace", "WM(Minus, LShift)", "WM(Equal, LShift)", "WM(LeftBracket, LShift)", "WM(RightBracket, LShift)", "_"],
+        ["_", "F7", "F8", "F9", "Tab", "F6", "WM(LeftBracket, LShift)", "WM(RightBracket, LShift)", "WM(Comma, LShift)", "WM(Dot, LShift)", "WM(Slash, LShift)", "WM(Grave, LShift)"],
+        ["Kc2", "_", "_", "_", "_", "__", "__", "_", "_", "_", "_", "Kc2"]
+    ],
+    #LRAISE layer (Layer 2)
+    [
+        ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
+        ["_", "Kc1", "Kc2", "Kc3", "Kc4", "Kc5", "Kc6", "Kc7", "Kc8", "Kc9", "Kc0", "WM(Backslash, LShift)"],
+        ["_", "F1", "F2", "F3", "F4", "F5",        "F6", "Minus", "Equal", "LeftBracket", "RightBracket", "_"],
+        ["_", "F7", "F8", "F9", "F10", "F11",      "F12", "RightBracket", "Comma", "Dot", "Slash", "Grave"],
+        ["Kc3", "_", "_", "_", "_", "__", "__", "_", "_", "_", "_", "Kc3"]
+    ],
+]
+
+[storage]
+
+[ble]
+enabled = true
+
+[behavior]
+enable_hrm = true
+
+[split]
+connection = "ble"
+
+[split.central]
+rows = 5
+cols = 6
+row_offset = 0
+col_offset = 0
+ble_addr = [0x18, 0xe2, 0x21, 0x80, 0xc0, 0xc7]
+
+## nice nanov2 pin info https://www.nologo.tech/product/otherboard/NRF52840.html#%E4%BA%A7%E5%93%81%E5%8F%82%E6%95%B0
+## pin 1 0
+serial = [{ instance = "PIO0", tx_pin = "PIN_1", rx_pin = "PIN_1" }]
+
+[split.central.matrix]
+matrix_type = "normal"
+input_pins = ["P0_17", "P0_22", "P0_24", "P1_00", "P0_11"]
+output_pins = ["P0_31", "P0_29", "P0_02", "P1_15", "P1_13", "P1_11"]
+
+[[split.peripheral]]
+rows = 5
+cols = 6
+row_offset = 0
+col_offset = 6
+ble_addr = [0x7e, 0xfe, 0x73, 0x9e, 0x66, 0xe3]
+serial = [{ instance = "PIO0", tx_pin = "PIN_1", rx_pin = "PIN_1" }]
+
+[split.peripheral.matrix]
+matrix_type = "normal"
+input_pins = ["P0_17", "P0_22", "P0_24", "P1_00", "P0_11"]
+output_pins = [
+    "P1_11",
+    "P1_13", 
+    "P1_15", 
+    "P0_02", 
+    "P0_29", 
+    "P0_31", 
+]
