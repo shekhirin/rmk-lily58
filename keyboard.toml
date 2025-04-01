@@ -7,35 +7,33 @@ manufacturer = "rmk"
 chip = "nrf52840"
 
 [layout]
-# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
-# row2col = true
 rows = 5
-cols = 14
+cols = 12
 layers = 3
 keymap = [
-    # LBASE layer
+    # Base layer
     [
-        ["Escape", "Kc1", "Kc2", "Kc3", "Kc4", "Kc5", "__", "__", "Kc6", "Kc7", "Kc8", "Kc9", "Kc0", "Grave"],
-        ["Tab", "Q", "W", "E", "R", "T", "__", "__", "Y", "U", "I", "O", "P", "Minus"],
-        ["LCtrl", "A", "S", "D", "F", "G", "__", "__", "H", "J", "K", "L", "Semicolon", "Quote"],
-        ["LShift", "Z", "X", "C", "V", "B", "LeftBracket", "RightBracket", "N", "M", "Comma", "Dot", "Slash", "RShift"],
-        ["__", "__", "__", "LAlt", "LGui", "MO(1)", "Space", "Enter", "MO(2)", "Backspace", "RGui", "__", "__", "__"],
+        ["Escape", "Kc1", "Kc2", "Kc3", "Kc4", "Kc5", "Kc6", "Kc7", "Kc8", "Kc9", "Kc0", "Grave"],
+        ["Tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "Minus"],
+        ["LCtrl", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Semicolon", "Quote"],
+        ["LShift", "Z", "X", "C", "V", "B", "N", "M", "Comma", "Dot", "Slash", "RShift"],
+        ["__", "LAlt", "LGui", "MO(1)", "Space", "LeftBracket", "RightBracket", "Enter", "MO(2)", "Backspace", "RGui", "__"],
     ],
-    # LLOWER layer (Layer 1)
+    # Lower layer
     [
-        ["__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__"],
-        ["F1", "F2", "F3", "F4", "F5", "F6", "__", "__", "F7", "F8", "F9", "F10", "F11", "F12"],
-        ["Grave", "SHIFTED(Kc1)", "SHIFTED(Kc2)", "SHIFTED(Kc3)", "SHIFTED(Kc4)", "SHIFTED(Kc5)", "SHIFTED(Kc6)", "__", "__", "SHIFTED(Kc7)", "SHIFTED(Kc8)", "SHIFTED(Kc9)", "SHIFTED(Kc0)", "SHIFTED(Grave)"],
-        ["__", "__", "__", "__", "__", "__", "__", "__", "__", "Minus", "KpPlus", "LeftBracket", "RightBracket", "SHIFTED(Backslash)"],
-        ["__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__"],
+        ["__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__"],
+        ["F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12"],
+        ["Grave", "SHIFTED(Kc1)", "SHIFTED(Kc2)", "SHIFTED(Kc3)", "SHIFTED(Kc4)", "SHIFTED(Kc5)", "SHIFTED(Kc6)", "SHIFTED(Kc7)", "SHIFTED(Kc8)", "SHIFTED(Kc9)", "SHIFTED(Kc0)", "SHIFTED(Grave)"],
+        ["__", "__", "__", "__", "__", "__", "__", "Minus", "KpPlus", "LeftBracket", "RightBracket", "SHIFTED(Backslash)"],
+        ["__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__"],
     ],
-    #LRAISE layer (Layer 2)
+    # Raise layer
     [
-        ["__", "BrightnessDown", "BrightnessUp", "AudioMute", "AudioVolDown", "AudioVolUp", "__", "__", "MediaPrevTrack", "MediaPlayPause", "MediaNextTrack", "__", "__", "__"],
-        ["Grave", "Kc1", "Kc2", "Kc3", "Kc4", "Kc5", "__", "__", "Kc6", "Kc7", "Kc8", "Kc9", "Kc0", "__"],
-        ["F1", "F2", "F3", "F4", "F5", "F6", "__", "__", "Left", "Down", "UP", "Right", "__", "__"],
-        ["F7", "F8", "F9", "F10", "F11", "F12", "__", "__", "KpPlus", "Minus", "Equal", "LeftBracket", "RightBracket", "Backslash"],
-        ["__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__"],
+        ["__", "BrightnessDown", "BrightnessUp", "AudioMute", "AudioVolDown", "AudioVolUp", "MediaPrevTrack", "MediaPlayPause", "MediaNextTrack", "__", "__", "__"],
+        ["Grave", "Kc1", "Kc2", "Kc3", "Kc4", "Kc5", "Kc6", "Kc7", "Kc8", "Kc9", "Kc0", "__"],
+        ["F1", "F2", "F3", "F4", "F5", "F6", "Left", "Down", "UP", "Right", "__", "__"],
+        ["F7", "F8", "F9", "F10", "F11", "F12", "KpPlus", "Minus", "Equal", "LeftBracket", "RightBracket", "Backslash"],
+        ["__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__", "__"],
     ],
 ]
 
@@ -47,35 +45,48 @@ connection = "ble"
 
 [split.central]
 rows = 5
-cols = 7
+cols = 6
 row_offset = 0
 col_offset = 0
 ble_addr = [0x18, 0xe2, 0x21, 0x80, 0xc0, 0xc7]
 
-serial = [{ instance = "PIO0", tx_pin = "PIN_1", rx_pin = "PIN_1" }]
-
 [split.central.matrix]
-matrix_type = "normal"
-input_pins = ["P0_17", "P0_22", "P0_24", "P1_00", "P0_11"]
-output_pins = ["P0_31", "P0_29", "P0_02", "P1_15", "P1_13", "P1_11", "P0_10"]
+input_pins = [
+    "P0_24",
+    "P1_00",
+    "P0_11",
+    "P1_04",
+    "P1_06",
+]
+output_pins = [
+    "P0_02",
+    "P1_15",
+    "P1_13",
+    "P1_11",
+    "P0_10",
+    "P0_09",
+]
 
 [[split.peripheral]]
 rows = 5
-cols = 7
+cols = 6
 row_offset = 0
-col_offset = 7
+col_offset = 6
 ble_addr = [0x7e, 0xfe, 0x73, 0x9e, 0x66, 0xe3]
-serial = [{ instance = "PIO0", tx_pin = "PIN_1", rx_pin = "PIN_1" }]
 
 [split.peripheral.matrix]
-matrix_type = "normal"
-input_pins = ["P0_17", "P0_22", "P0_24", "P1_00", "P0_11"]
+input_pins = [
+    "P0_24",
+    "P1_00",
+    "P0_11",
+    "P1_04",
+    "P1_06",
+]
 output_pins = [
+    "P0_09",
     "P0_10",
     "P1_11",
-    "P1_13", 
-    "P1_15", 
-    "P0_02", 
-    "P0_29", 
-    "P0_31", 
+    "P1_13",
+    "P1_15",
+    "P0_02",
 ]
