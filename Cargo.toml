@@ -36,7 +36,7 @@ path = "src/peripheral.rs"
 rmk = { version = "0.5", features = [
     "nrf52840_ble",
     "split",
-    # "async_matrix"
+    "async_matrix"
 ] }
 cortex-m = "0.7.7"
 cortex-m-rt = "0.7.3"
@@ -69,3 +69,4 @@ const-gen = "1.6"
 [patch.crates-io]
 nrf-softdevice = { version = "0.1.0", git = "https://github.com/embassy-rs/nrf-softdevice", rev = "b53991e"}
 rmk = { git = "https://github.com/haobogu/rmk" }
+# rmk = { path = "../rmk/rmk" }
